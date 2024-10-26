@@ -1,0 +1,11 @@
+name: Github Actions Demo
+run-name: xxxxx-yyyy
+on:
+  branch_protection_rule:
+    types: [created, deleted]
+jobs:
+  Examples:
+    runs-on: ubuntu-latest
+    steps: 
+      - run: echo "Test Example"
+
