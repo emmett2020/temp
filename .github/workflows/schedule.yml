@@ -1,0 +1,14 @@
+name: Schedule Demos
+run-name: Run Name
+on:
+  schedule:
+    - cron: '* * * * *'
+jobs:
+  test_schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Every minitues
+        run: echo "minitues"
+      - name: Two
+        run: echo "Two"
+    
