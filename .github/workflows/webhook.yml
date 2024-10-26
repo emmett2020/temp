@@ -1,0 +1,10 @@
+name: Github Webhook
+run-name: ffffff
+on:
+  create:
+jobs:
+  check-branch-name:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${GITHUB_REF}"
+  
