@@ -6,6 +6,7 @@ on:
 jobs:
   Examples:
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - run: echo "Test Example"
+      - run: echo "${GITHUB_SHA} -- ${GITHUB_REF}"
 
