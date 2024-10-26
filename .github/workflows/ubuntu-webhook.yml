@@ -1,8 +1,9 @@
 name: Github Actions Demo
 run-name: xxxxx-yyyy
 on:
-  branch_protection_rule:
-    types: [created, deleted]
+  pull-request:
+    types:
+      [opened, synchronize, reopened, assigned]
 jobs:
   Examples:
     runs-on: ubuntu-latest
