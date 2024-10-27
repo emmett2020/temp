@@ -1,5 +1,5 @@
-name: Schedule Demos
-run-name: Run Name
+name: GITHUB ACTIONS Schedule
+run-name: Run schedule
 on:
   schedule:
     - cron: "* * * * *"

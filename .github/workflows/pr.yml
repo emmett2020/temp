@@ -1,5 +1,5 @@
-name: Github Actions Demo
-run-name: xxxxx-yyyy
+name: Github Actions Pull Request
+run-name: test_pull_request
 on:
   pull_request:
     types:

@@ -1,5 +1,5 @@
-name: Multiple push
-run-name: test-multiple-run-name
+name: GITHUB ACTIONS PUSH
+run-name: test-push
 on: push
 jobs:
   job2:

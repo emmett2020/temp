@@ -1,5 +1,5 @@
-name: status
-run-names: status-run-names
+name: GITHUB ACTIONS STATUS
+run-names: run-status
 on: status
 jobs:
   status_error_or_if:
