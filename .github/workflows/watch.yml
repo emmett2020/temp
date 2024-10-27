@@ -1,0 +1,12 @@
+name: Github Watch
+run-name: run-github-watch
+on:
+  watch:
+    started
+
+jobs:
+  triggered-by-started:
+  runs-on: ubuntu-latest
+  steps:
+    - name: triggered-by-started
+      run: echo "successful"
