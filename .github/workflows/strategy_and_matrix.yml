@@ -3,14 +3,14 @@ run-name: run strategy and matrix demo
 on:
   push
 
-strategy:
-  matrix:
-    int: [1, 2]
-    str: ["hi", "hello"]
 
 jobs:
   job-id:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        int: [1, 2]
+        str: ["hi", "hello"]
     steps:
       - run: echo "${{ matrix.int }} -- ${{ matrix.str }}"
 
