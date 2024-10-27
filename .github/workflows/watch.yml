@@ -1,8 +1,7 @@
 name: Github Watch
 run-name: run-github-watch
 on:
-  watch:
-    started
+  watch: started
 
 jobs:
   triggered-by-started:
