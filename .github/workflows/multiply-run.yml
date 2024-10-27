@@ -6,4 +6,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo Ubuntu-latest
-      - run: exit 1
