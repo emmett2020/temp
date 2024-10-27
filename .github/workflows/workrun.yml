@@ -1,0 +1,15 @@
+name: Github Action Workrun
+run-name: Test action workrun
+on:
+  workflow_run:
+    workflows: [Workflow Dispatch]
+    types: completed
+
+jobs:
+  job-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: step name 1
+        run: echo "step name 1"
+
+
