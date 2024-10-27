@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 project(test)
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 20)
 set(CXX_STANDARD_REQUIRED true)
 
 OPTION (ENABLE_COVERAGE "Enable coverage" ON)
