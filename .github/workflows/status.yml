@@ -4,9 +4,9 @@ on: status
 jobs:
   status_error_or_if:
     runs-on: ubunut-latest
-    if: >-
-      github.event.state == 'error' ||
-      github.event.state == 'fail'
+    # if: >-
+    #   github.event.state == 'error' ||
+    #   github.event.state == 'fail'
     steps:
       - env: 
         DESCRIPTION: ${{ github.event.description }}
