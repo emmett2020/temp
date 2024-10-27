@@ -1,0 +1,32 @@
+name: Github Code Coverage
+run-name: test code coverage
+on:
+  pull_request
+
+jobs:
+  job-id:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - name: Build
+      run: |
+        cmake -S . -B build -DENABLE_COVERAGE=On
+        cmake --build build
+
+    - name: Install gcovr
+      run: |
+         apt install gcovr
+
+    - name: Test
+      run: |
+         ./build/main
+
+
+    - name: Collection result
+      run: gcovr --html -o coverage.html
+
+
+
