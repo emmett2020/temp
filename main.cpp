@@ -5,6 +5,7 @@ int Print() {
   } else {
     --n;
   }
+
   return n;
 }
 
