@@ -4,7 +4,7 @@ on: watch
 
 jobs:
   triggered-by-started:
-  runs-on: ubuntu-latest
-  steps:
-    - name: triggered-by-started
-      run: echo "successful"
+    runs-on: ubuntu-latest
+    steps:
+      - name: triggered-by-started
+        run: echo "successful"
