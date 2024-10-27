@@ -5,10 +5,10 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      run: |
-        echo "::group::Log Title"
-        echo "Inside group"
-        echo "::endgroup::"
+      - run: |
+          echo "::group::Log Title"
+          echo "Inside group"
+          echo "::endgroup::"
 
 
 
