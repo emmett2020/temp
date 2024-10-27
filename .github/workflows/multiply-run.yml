@@ -1,0 +1,9 @@
+name: Multiple push
+run-name: test-multiple-run-name
+on: push
+jobs:
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Ubuntu-latest
+      - run: exit 1
