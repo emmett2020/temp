@@ -1,7 +1,7 @@
 name: Github Code Coverage
 run-name: test code coverage
 on:
-  pull_request
+ push
 
 jobs:
   job-id:
@@ -18,7 +18,7 @@ jobs:
 
     - name: Install gcovr
       run: |
-         apt install gcovr
+        sudo apt install gcovr
 
     - name: Test
       run: |
@@ -26,7 +26,16 @@ jobs:
 
 
     - name: Collection result
-      run: gcovr --html -o coverage.html
+      run: |
+        gcovr --html -o coverage.html
+        ls
+        cat coverage.html
 
+    - uses: codecov/codecov-action@v4
+      name: Upload Coverage Report to codecov.io
+      with:
+        file: coverage.html
+        token: ${{ secrets.CODECOV_TOKEN }} # required
+        verbose: true
 
 
