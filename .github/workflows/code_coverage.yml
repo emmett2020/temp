@@ -31,5 +31,11 @@ jobs:
         ls
         cat coverage.html
 
+    - uses: codecov/codecov-action@v4
+      name: Upload Coverage Report to codecov.io
+      with:
+        file: coverage.html
+        token: ${{ secrets.CODECOV_TOKEN }} # required
+        verbose: true
 
 
