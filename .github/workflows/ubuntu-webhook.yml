@@ -10,4 +10,5 @@ jobs:
     steps:
       - run: echo "Test Example"
       - run: echo "${GITHUB_SHA} -- ${GITHUB_REF}"
+      - run: exit -1
 
