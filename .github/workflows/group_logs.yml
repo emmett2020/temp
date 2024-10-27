@@ -1,0 +1,14 @@
+name: Github Group Logs
+run-name: test name
+on: push
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      run: |
+        echo "::group::Log Title"
+        echo "Inside group"
+        echo "::endgroup::"
+
+
+
