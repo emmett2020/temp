@@ -7,8 +7,8 @@ int Print() {
   } else {
     --n;
   }
-  return n;
   std::cout << "Hello world\n";
+  return n;
 }
 
 int main() {

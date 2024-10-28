@@ -6,23 +6,37 @@ on:
       - main
 
 jobs:
-  build-and-test-on-ubuntu-2204:
+  build-and-test-on-ubuntu-2204-with-gcc:
+    name: "ubuntu-22.04-${{ matrix.compiler }}"
     runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
         include:
-          - { compiler: "g++-10.5.0", cxxflags: "" }
-          - { compiler: "g++-11.4.0", cxxflags: "" }
-          - { compiler: "g++-12.3.0", cxxflags: "" }
-          - { compiler: "clang++-13.0.1", cxxflags: "" }
-          - { compiler: "clang++-14.0.0", cxxflags: "" }
-          - { compiler: "clang++-15.0.7", cxxflags: "" }
-    name: "ubuntu-22.04-${{ matrix.compiler }}"
+          # Installed by github images
+          # Details: https://github.com/actions/runner-images
+          - { compiler: "gcc",   version: "10.5.0", need_install: false, build_type: Debug,   cxxflags: "" }
+          - { compiler: "gcc",   version: "10.5.0", need_install: false, build_type: Release, cxxflags: "" }
+          - { compiler: "gcc",   version: "11.4.0", need_install: false, build_type: Release, cxxflags: "" }
+          - { compiler: "gcc",   version: "12.3.0", need_install: false, build_type: Release, cxxflags: "" }
+          - { compiler: "clang", version: "13.0.1", need_install: false, build_type: Release, cxxflags: "" }
+          - { compiler: "clang", version: "14.0.0", need_install: false, build_type: Release, cxxflags: "" }
+          - { compiler: "clang", version: "15.0.7", need_install: false, build_type: Release, cxxflags: "" }
+
     steps:
-      - name: Install compiler
+      - name: Setup compiler
         run: |
-          echo install compiler for a specific version
+          if [[ "${{ matrix.need_install }}" ]]; then
+            echo "TODO: Install compiler for a specific version"
+          fi
+
+          if [[ "${{ matrix.compiler }}" == "clang" ]]; then
+            echo "CC=clang-${{ matrix.version }}" >> $GITHUB_ENV
+            echo "CXX=clang++-${{ matrix.version }}" >> $GITHUB_ENV
+          else
+            echo "CC=gcc-${{ matrix.version }}" >> $GITHUB_ENV
+            echo "CXX=g++-${{ matrix.version }}" >> $GITHUB_ENV
+          fi
 
       - name: Install other dependencies
         run: |
@@ -30,12 +44,13 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Cmake
         run: |
           set -ex;
           cmake -S . -B build -GNinja \
-            -DCMAKE_CXX_FLAGS="" \
-            -DCMAKE_BUILD_TYPE=Release;
+            -DCMAKE_CXX_FLAGS="${{ matrix.cxxflags }}" \
+            -DCMAKE_BUILD_TYPE="${{ matrix.build_type }}";
 
       - name: Compile
         run: |
@@ -43,6 +58,5 @@ jobs:
 
       - name: Run unittests
         run: |
-          ./build/main
-
+          ./build/main;
 
