@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-test-on-ubuntu-2204-with-gcc:
-    name: "ubuntu-22.04-${{ matrix.compiler }}"
+    name: "ubuntu-22.04-${{ matrix.compiler }}-${{ matrix.version }}-${{ matrix.build_type }}"
     runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
@@ -16,14 +16,19 @@ jobs:
           # Installed by github images
           # Details: https://github.com/actions/runner-images
           - { compiler: "gcc",   version: "10.5.0", need_install: false, build_type: Debug,   cxxflags: "" }
-          - { compiler: "gcc",   version: "10.5.0", need_install: false, build_type: Release, cxxflags: "" }
-          - { compiler: "gcc",   version: "11.4.0", need_install: false, build_type: Release, cxxflags: "" }
-          - { compiler: "gcc",   version: "12.3.0", need_install: false, build_type: Release, cxxflags: "" }
-          - { compiler: "clang", version: "13.0.1", need_install: false, build_type: Release, cxxflags: "" }
-          - { compiler: "clang", version: "14.0.0", need_install: false, build_type: Release, cxxflags: "" }
-          - { compiler: "clang", version: "15.0.7", need_install: false, build_type: Release, cxxflags: "" }
+          # - { compiler: "gcc",   version: "10.5.0", need_install: false, build_type: Release, cxxflags: "" }
+          # - { compiler: "gcc",   version: "11.4.0", need_install: false, build_type: Release, cxxflags: "" }
+          # - { compiler: "gcc",   version: "12.3.0", need_install: false, build_type: Release, cxxflags: "" }
+          # - { compiler: "clang", version: "13.0.1", need_install: false, build_type: Release, cxxflags: "" }
+          # - { compiler: "clang", version: "14.0.0", need_install: false, build_type: Release, cxxflags: "" }
+          # - { compiler: "clang", version: "15.0.7", need_install: false, build_type: Release, cxxflags: "" }
 
     steps:
+      - name: show compiler 
+        run: |
+          ls /usr/bin
+          ls /usr/bin | grep gcc
+          ls /usr/bin | grep clang
       - name: Setup compiler
         run: |
           if [[ "${{ matrix.need_install }}" ]]; then
