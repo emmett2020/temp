@@ -35,12 +35,13 @@ jobs:
 
           major=$(echo ${{ matrix.version }} | cut -d'.' -f1)
           if [[ "${{ matrix.compiler }}" == "clang" ]]; then
-            echo "CC=clang-${major}" >> $GITHUB_ENV
-            echo "CXX=clang++-${major}" >> $GITHUB_ENV
+            echo "CC=clang-${major}" >> ${GITHUB_ENV}
+            echo "CXX=clang++-${major}" >> ${GITHUB_ENV}
           else
-            echo "CC=gcc-${major}" >> $GITHUB_ENV
-            echo "CXX=g++-${major}" >> $GITHUB_ENV
+            echo "CC=gcc-${major}" >> ${GITHUB_ENV}
+            echo "CXX=g++-${major}" >> ${GITHUB_ENV}
           fi
+          echo "${CC}, ${CXX}"
 
       - name: Install other dependencies
         run: |
