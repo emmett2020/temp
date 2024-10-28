@@ -16,12 +16,12 @@ jobs:
           # Installed by github images
           # Details: https://github.com/actions/runner-images
           - { compiler: "gcc",   version: "10.5.0", need_install: false, build_type: Debug,   cxxflags: "" }
-          # - { compiler: "gcc",   version: "10.5.0", need_install: false, build_type: Release, cxxflags: "" }
-          # - { compiler: "gcc",   version: "11.4.0", need_install: false, build_type: Release, cxxflags: "" }
-          # - { compiler: "gcc",   version: "12.3.0", need_install: false, build_type: Release, cxxflags: "" }
-          # - { compiler: "clang", version: "13.0.1", need_install: false, build_type: Release, cxxflags: "" }
-          # - { compiler: "clang", version: "14.0.0", need_install: false, build_type: Release, cxxflags: "" }
-          # - { compiler: "clang", version: "15.0.7", need_install: false, build_type: Release, cxxflags: "" }
+          - { compiler: "gcc",   version: "10.5.0", need_install: false, build_type: Release, cxxflags: "" }
+          - { compiler: "gcc",   version: "11.4.0", need_install: false, build_type: Release, cxxflags: "" }
+          - { compiler: "gcc",   version: "12.3.0", need_install: false, build_type: Release, cxxflags: "" }
+          - { compiler: "clang", version: "13.0.1", need_install: false, build_type: Release, cxxflags: "" }
+          - { compiler: "clang", version: "14.0.0", need_install: false, build_type: Release, cxxflags: "" }
+          - { compiler: "clang", version: "15.0.7", need_install: false, build_type: Release, cxxflags: "" }
 
     steps:
       - name: show compiler 
@@ -35,12 +35,13 @@ jobs:
             echo "TODO: Install compiler for a specific version"
           fi
 
+          major=$(echo ${{ matrix.version }} | cut -d'.' -f1)
           if [[ "${{ matrix.compiler }}" == "clang" ]]; then
-            echo "CC=clang-${{ matrix.version }}" >> $GITHUB_ENV
-            echo "CXX=clang++-${{ matrix.version }}" >> $GITHUB_ENV
+            echo "CC=clang-${major}" >> $GITHUB_ENV
+            echo "CC=clang++-${major}" >> $GITHUB_ENV
           else
-            echo "CC=gcc-${{ matrix.version }}" >> $GITHUB_ENV
-            echo "CXX=g++-${{ matrix.version }}" >> $GITHUB_ENV
+            echo "CC=gcc-${major}" >> $GITHUB_ENV
+            echo "CC=g++-${major}" >> $GITHUB_ENV
           fi
 
       - name: Install other dependencies
