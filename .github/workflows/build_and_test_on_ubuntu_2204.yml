@@ -1,0 +1,48 @@
+name: Build And Test On Ubuntu 2204
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  build-and-test-on-ubuntu-2204:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { compiler: "g++-10.5.0", cxxflags: "" }
+          - { compiler: "g++-11.4.0", cxxflags: "" }
+          - { compiler: "g++-12.3.0", cxxflags: "" }
+          - { compiler: "clang++-13.0.1", cxxflags: "" }
+          - { compiler: "clang++-14.0.0", cxxflags: "" }
+          - { compiler: "clang++-15.0.7", cxxflags: "" }
+    name: "ubuntu-22.04-${{ matrix.compiler }}"
+    steps:
+      - name: Install compiler
+        run: |
+          echo install compiler for a specific version
+
+      - name: Install other dependencies
+        run: |
+          sudo apt install ninja-build;
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Cmake
+        run: |
+          set -ex;
+          cmake -S . -B build -GNinja \
+            -DCMAKE_CXX_FLAGS="" \
+            -DCMAKE_BUILD_TYPE=Release;
+
+      - name: Compile
+        run: |
+          cmake --build build -v
+
+      - name: Run unittests
+        run: |
+          ./build/main
+
+

@@ -1,3 +1,5 @@
+#include <iostream>
+
 int Print() {
   int n = 1;
   if (n == 1) {
@@ -6,6 +8,7 @@ int Print() {
     --n;
   }
   return n;
+  std::cout << "Hello world\n";
 }
 
 int main() {
