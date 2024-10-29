@@ -19,8 +19,12 @@ jobs:
 
     - name: Install Dependencies
       run: |
+        echo "::group::ninja build log"
         sudo apt install ninja-build;
+        echo "::endgroup::"
+        echo "::group::gcovr build log"
         sudo apt install gcovr;
+        echo "::endgroup::"
 
     - name: CMake
       run: |
