@@ -15,8 +15,7 @@ jobs:
         include:
           # Installed by github images
           # Details: https://github.com/actions/runner-images
-          - { compiler: "gcc",   version: "10.5.0", need_install: false, build_type: Debug,   cxxflags: "" }
-          - { compiler: "gcc",   version: "10.5.0", need_install: false, build_type: Release, cxxflags: "" }
+          - { compiler: "gcc",   version: "11.4.0", need_install: false, build_type: Debug,   cxxflags: "" }
           - { compiler: "gcc",   version: "11.4.0", need_install: false, build_type: Release, cxxflags: "" }
           - { compiler: "gcc",   version: "12.3.0", need_install: false, build_type: Release, cxxflags: "" }
           - { compiler: "clang", version: "13.0.1", need_install: false, build_type: Release, cxxflags: "" }
@@ -30,7 +29,7 @@ jobs:
       - name: Setup C/C++ compiler
         run: |
           if [[ "${{ matrix.need_install }}" ]]; then
-            echo "TODO: Install compiler for a specific version"
+            echo "TODO: Install compiler of a specific version."
           fi
 
           major=$(echo ${{ matrix.version }} | cut -d'.' -f1)
