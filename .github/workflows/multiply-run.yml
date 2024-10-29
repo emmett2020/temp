@@ -1,8 +1,0 @@
-name: GITHUB ACTIONS PUSH
-run-name: test-push
-on: push
-jobs:
-  job2:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo Ubuntu-latest

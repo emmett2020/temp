@@ -19,10 +19,10 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        echo "::group::ninja build log"
+        echo "::group::install ninja log"
         sudo apt install ninja-build;
         echo "::endgroup::"
-        echo "::group::gcovr build log"
+        echo "::group::install gcovr log"
         sudo apt install gcovr;
         echo "::endgroup::"
 
