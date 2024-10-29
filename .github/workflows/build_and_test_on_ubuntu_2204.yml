@@ -15,12 +15,12 @@ jobs:
         include:
           # Installed by github images
           # Details: https://github.com/actions/runner-images
-          - { compiler: "gcc",   version: "11.4.0", need_install: false, build_type: Debug,   cxxflags: "" }
-          - { compiler: "gcc",   version: "11.4.0", need_install: false, build_type: Release, cxxflags: "" }
-          - { compiler: "gcc",   version: "12.3.0", need_install: false, build_type: Release, cxxflags: "" }
-          - { compiler: "clang", version: "13.0.1", need_install: false, build_type: Release, cxxflags: "" }
-          - { compiler: "clang", version: "14.0.0", need_install: false, build_type: Release, cxxflags: "" }
-          - { compiler: "clang", version: "15.0.7", need_install: false, build_type: Release, cxxflags: "" }
+          - { compiler: "gcc",   version: "11.4.0", build_type: Debug,   cxxflags: "" }
+          - { compiler: "gcc",   version: "11.4.0", build_type: Release, cxxflags: "" }
+          - { compiler: "gcc",   version: "12.3.0", build_type: Release, cxxflags: "" }
+          - { compiler: "clang", version: "13.0.1", build_type: Release, cxxflags: "" }
+          - { compiler: "clang", version: "14.0.0", build_type: Release, cxxflags: "" }
+          - { compiler: "clang", version: "15.0.7", build_type: Release, cxxflags: "" }
 
     steps:
       - name: Checkout repository
@@ -28,8 +28,8 @@ jobs:
 
       - name: Setup C/C++ compiler
         run: |
-          if [[ "${{ matrix.need_install }}" ]]; then
-            echo "TODO: Install compiler of a specific version."
+          if [[ "${{ matrix.version }}" == "x.x.x" ]]; then
+            echo "Install a specific compiler version."
           fi
 
           major=$(echo ${{ matrix.version }} | cut -d'.' -f1)
