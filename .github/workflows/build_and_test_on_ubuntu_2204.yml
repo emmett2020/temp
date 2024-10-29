@@ -1,9 +1,7 @@
-name: Build And Test On Ubuntu 2204
+name: Build And Test On Ubuntu 22.04
 on:
   push:
-    branches:
-      - master
-      - main
+    branches: [main, master]
 
 jobs:
   build-and-test-on-ubuntu-2204-with-gcc:
@@ -23,10 +21,12 @@ jobs:
           - { compiler: "clang", version: "15.0.7", build_type: Release, cxxflags: "" }
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          submodules: true
 
-      - name: Setup C/C++ compiler
+      - name: Setup C/C++ Compiler
         run: |
           if [[ "${{ matrix.version }}" == "x.x.x" ]]; then
             echo "Install a specific compiler version."
@@ -42,11 +42,11 @@ jobs:
           fi
           echo "${CC}, ${CXX}"
 
-      - name: Install other dependencies
+      - name: Install Dependencies
         run: |
           sudo apt install ninja-build;
 
-      - name: Cmake
+      - name: CMake
         run: |
           set -ex;
           cmake -S . -B build -GNinja \
@@ -57,7 +57,7 @@ jobs:
         run: |
           cmake --build build -v
 
-      - name: Run unittests
+      - name: Run Unittests
         run: |
           ./build/main;
 

@@ -1,41 +1,47 @@
-name: Github Code Coverage
-run-name: test code coverage
+name: Code Coverage On Ubuntu 22.04
 on:
-  pull_request
+  push:
+    branches: [main, master]
 
 jobs:
   job-id:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Repository
+      uses: actions/checkout@v4
       with:
         submodules: true
 
-    - name: Build
+    - name: Setup C/C++ Compiler
       run: |
-        cmake -S . -B build -DENABLE_COVERAGE=On
-        cmake --build build
+        echo "CC=gcc-11" >> ${GITHUB_ENV}
+        echo "CXX=g++-11" >> ${GITHUB_ENV}
 
-    - name: Install gcovr
+    - name: Install Dependencies
       run: |
-        sudo apt install gcovr
+        sudo apt install ninja-build;
+        sudo apt install gcovr;
 
-    - name: Test
+    - name: CMake
       run: |
-         ./build/main
+        set -ex;
+        cmake -S . -B build -GNinja \
+          -DCMAKE_CXX_FLAGS="" \
+          -DENABLE_COVERAGE=On \
+          -DCMAKE_BUILD_TYPE="Debug";
 
+    - name: Compile
+      run: cmake --build build -v
+
+    - name: Run Unittests
+      run: ./build/main;
 
     - name: Collection result
-      run: |
-        gcovr --html -o coverage.html
-        ls
-        cat coverage.html
+      run: gcovr --html -o coverage.html
 
-    - uses: codecov/codecov-action@v4
-      name: Upload Coverage Report to codecov.io
+    - name: Upload Coverage Report to codecov.io
+      uses: codecov/codecov-action@v4
       with:
         file: coverage.html
         token: ${{ secrets.CODECOV_TOKEN }} # required
         verbose: true
-
-
