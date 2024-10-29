@@ -1,0 +1,4 @@
+pacman,
+portage,
+dnf
+
