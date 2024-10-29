@@ -4,7 +4,7 @@ on:
     branches: [main, master]
 
 jobs:
-  job-id:
+  code-coverage:
     runs-on: ubuntu-22.04
     steps:
     - name: Checkout Repository
