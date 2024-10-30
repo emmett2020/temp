@@ -9,6 +9,7 @@ int Print() {
     --n;
   }
   std::cout << "Hello world\n";
+  int n2 = 1.1;
 
   return n;
 }
