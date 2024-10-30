@@ -1,4 +1,4 @@
-name: GITHUB ACTIONS Schedule
+name: Github Actions Schedule
 run-name: Run schedule
 on:
   schedule:
