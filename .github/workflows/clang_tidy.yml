@@ -4,7 +4,9 @@
 name: Clang Tidy
 on:
   push:
-    branches: [main, master]
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
 
 jobs:
   clang-tidy:
@@ -30,12 +32,15 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         style: ''  # Use .clang-format config file
-        tidy-checks: '.clang-tidy' # Use .clang-tidy config file
+        tidy-checks: '' # Use .clang-tidy config file
         # only 'update' a single comment in a pull request thread.
         thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
         version: 18
         database: build
         verbosity: debug
+        step-summary: true
+        tidy-review: true
+
     - name: Fail fast?!
       if: steps.linter.outputs.checks-failed > 0
       run: exit 1
