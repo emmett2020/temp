@@ -10,6 +10,8 @@ int Print() {
   }
   std::cout << "Hello world\n";
   int n2 = 1.1;
+
+  int n3 = 1.1;
   return n;
 }
 
