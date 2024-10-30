@@ -1,4 +1,4 @@
-name: clang-tidy
+name: Clang Tidy
 on:
   push:
     branches: [main, master]
@@ -27,7 +27,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         style: ''  # Use .clang-format config file
-        tidy-checks: '' # Use .clang-tidy config file
+        tidy-checks: '.clang-tidy' # Use .clang-tidy config file
         # only 'update' a single comment in a pull request thread.
         thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
     - name: Fail fast?!
