@@ -1,5 +1,5 @@
 # Uses Github Action cpp-linter-action.
-# https://cpp-linter.github.io/cpp-linter-action/inputs-outputs/
+# https://cpp-linter.github.io/cpp-linter-action/
 
 name: Clang Tidy
 on:
@@ -35,6 +35,7 @@ jobs:
         thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
         version: 18
         database: build
+        verbosity: debug
     - name: Fail fast?!
       if: steps.linter.outputs.checks-failed > 0
       run: exit 1
