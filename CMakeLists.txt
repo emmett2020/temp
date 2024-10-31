@@ -11,5 +11,10 @@ IF(ENABLE_COVERAGE)
   set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} --coverage ")
 ENDIF()
 
+# TODO: add an example about how to use boost in CMake
+find_package(Boost 1.83.0 REQUIRED)
+
 set(SRC_FILE main.cpp)
 add_executable(main ${SRC_FILE})
+target_include_directories(main PRIVATE ${Boost_INCLUDE_DIRS})
+target_link_libraries(main ${Boost_LIBRARIES})
