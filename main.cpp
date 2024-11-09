@@ -1,4 +1,6 @@
 #include <iostream>
+
+#include <iostream>
 #include <string.h>
 
 int Print() {
@@ -16,6 +18,7 @@ int Print() {
 }
 
 int main() {
+  int n = 3;
 
   Print();
   return 0;
