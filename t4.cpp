@@ -1,1 +1,3 @@
-dssddsf
+namespace {
+intt;
+}

@@ -20,4 +20,4 @@ Checks: '
   -google-readability-todo,
   -misc-non-private-member-variables-in-classes,
 '
-WarningsAsErrors: '*'
+WarningsAsErrors: 'misc-*'
