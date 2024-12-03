@@ -32,7 +32,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-         log-level: ${{ inputs.log-level }}
+         log-level: trace
          clang-tidy-version: 12
-         target: refs/remotes/origin/test-action
+         target: refs/remotes/origin/main
 
