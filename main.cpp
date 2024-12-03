@@ -1,3 +1,8 @@
+#include <iostream>
+
+#include <iostream>
+#include <string.h>
+
 int n = 2.5; // NOLINT
 
 // int Print() {
@@ -16,6 +21,7 @@ int n = 2.5; // NOLINT
 // }
 
 int main() {
+  int n = 3;
 
   // Print();
   return 0;

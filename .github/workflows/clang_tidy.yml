@@ -10,7 +10,7 @@ on:
 
 jobs:
   clang-tidy:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
@@ -26,22 +26,13 @@ jobs:
           -DCMAKE_C_COMPILER="clang" \
           -DCMAKE_EXPORT_COMPILE_COMMANDS=on \
           -DCMAKE_BUILD_TYPE="Debug";
-    - uses: cpp-linter/cpp-linter-action@v2
+
+    - uses: emmett2020/cpp-linter
       id: linter
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        style: ''  # Use .clang-format config file
-        tidy-checks: '' # Use .clang-tidy config file
-        # only 'update' a single comment in a pull request thread.
-        thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
-        version: 18
-        database: build
-        verbosity: debug
-        step-summary: true
-        tidy-review: true
-
-    - name: Fail fast?!
-      if: steps.linter.outputs.checks-failed > 0
-      run: exit 1
+         log-level: ${{ inputs.log-level }}
+         clang-tidy-version: 12
+         target: refs/remotes/origin/test-action
 
