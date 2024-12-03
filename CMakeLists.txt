@@ -12,7 +12,7 @@ IF(ENABLE_COVERAGE)
 ENDIF()
 
 # TODO: add an example about how to use boost in CMake
-find_package(Boost 1.83.0 REQUIRED)
+# find_package(Boost 1.83.0 REQUIRED)
 
 set(SRC_FILE main.cpp)
 add_executable(main ${SRC_FILE})
