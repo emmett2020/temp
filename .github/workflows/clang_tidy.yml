@@ -27,7 +27,7 @@ jobs:
           -DCMAKE_EXPORT_COMPILE_COMMANDS=on \
           -DCMAKE_BUILD_TYPE="Debug";
 
-    - uses: emmett2020/cpp-linter@v0.0.25
+    - uses: emmett2020/cpp-linter@v0.0.26
       id: linter
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
