@@ -16,6 +16,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         submodules: true
+        fetch-depth: 0
 
     - name: CMake
       run: |
@@ -27,12 +28,12 @@ jobs:
           -DCMAKE_EXPORT_COMPILE_COMMANDS=on \
           -DCMAKE_BUILD_TYPE="Debug";
 
-    - uses: emmett2020/cpp-linter@v0.0.27
+    - uses: emmett2020/cpp-linter@v0.0.29
       id: linter
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
          log-level: trace
          clang-tidy-version: 12
-         # target: refs/remotes/origin/main
+         target: refs/remotes/origin/main
 
