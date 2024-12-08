@@ -35,5 +35,6 @@ jobs:
       with:
          log-level: trace
          clang-tidy-version: 12
+         clang-format-version: 12
          target: refs/remotes/origin/main
 
