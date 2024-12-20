@@ -4,9 +4,9 @@
 name: Clang Tidy
 on:
   push:
-    branches: ["main", "master"]
+    branches: ["main1", "master1"]
   pull_request:
-    branches: ["main", "master"]
+    branches: ["main1", "master1"]
 
 jobs:
   clang-tidy:
