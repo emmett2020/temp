@@ -13,8 +13,6 @@ AlignConsecutiveMacros:
   Enabled: true
 AlignConsecutiveShortCaseStatements:
   Enabled: true
-  AlignCaseArrows: true
-  AlignCaseColons: true
 AlignEscapedNewlines: LeftWithLastLine
 AlignOperands: AlignAfterOperator
 AlignTrailingComments:
