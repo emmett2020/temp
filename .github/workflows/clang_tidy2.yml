@@ -38,6 +38,7 @@ jobs:
         version: 18
         database: build
         verbosity: debug
+        format-review: true
     - name: Fail fast?!
       if: steps.linter.outputs.checks-failed > 0
       run: exit 1
