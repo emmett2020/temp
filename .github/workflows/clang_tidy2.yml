@@ -1,0 +1,43 @@
+# Uses Github Action cpp-linter-action.
+# https://cpp-linter.github.io/cpp-linter-action/
+
+name: Clang Tidy (Ref)
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  clang-tidy:
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - name: CMake
+      run: |
+        set -ex;
+        cmake -S . -B build \
+          -DCMAKE_CXX_FLAGS="" \
+          -DCMAKE_CXX_COMPILER="clang++" \
+          -DCMAKE_C_COMPILER="clang" \
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=on \
+          -DCMAKE_BUILD_TYPE="Debug";
+    - uses: cpp-linter/cpp-linter-action@v2
+      id: linter
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        style: ''  # Use .clang-format config file
+        tidy-checks: '.clang-tidy' # Use .clang-tidy config file
+        # only 'update' a single comment in a pull request thread.
+        thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
+        version: 18
+        database: build
+        verbosity: debug
+    - name: Fail fast?!
+      if: steps.linter.outputs.checks-failed > 0
+      run: exit 1
