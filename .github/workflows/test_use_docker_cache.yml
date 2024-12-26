@@ -1,0 +1,20 @@
+name: Docker Cache
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  Test:
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+    - name: "Download"
+      uses: "docker"
+      image: "docker://ghcr.io/super-linter/super-linter:v7.2.1" # x-release-please-version
+
+
