@@ -28,11 +28,11 @@ jobs:
           -DCMAKE_EXPORT_COMPILE_COMMANDS=on \
           -DCMAKE_BUILD_TYPE="Debug";
 
-    - uses: emmett2020/cpp-linter@v0.0.46
-      id: cpplint
+    - uses: emmett2020/cpp-linter@v0.0.47
+      id: cpp-lint
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
          log-level: trace
-         target: refs/remotes/origin/main
+         target-revision: refs/remotes/origin/main
 
