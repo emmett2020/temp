@@ -14,8 +14,6 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
     - name: CMake
       run: |
@@ -26,16 +24,6 @@ jobs:
           -DCMAKE_C_COMPILER="clang" \
           -DCMAKE_EXPORT_COMPILE_COMMANDS=on \
           -DCMAKE_BUILD_TYPE="Debug";
-
-    - name: Test
-      run: |
-        echo "git info: "
-        git fetch origin
-        git branch -a
-        git fetch origin main:main
-
-        echo "local .git info: "
-        ls -lrthR .git
 
     - uses: emmett2020/cpp-linter@v0.0.64
       id: cpp-lint
