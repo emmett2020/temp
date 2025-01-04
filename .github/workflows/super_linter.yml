@@ -3,7 +3,7 @@ name: Lint
 
 on: # yamllint disable-line rule:truthy
   push:
-    branches: main
+    branches: [main, test13]
   pull_request:
     branches: main
 
