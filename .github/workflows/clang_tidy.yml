@@ -38,5 +38,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
          log-level: trace
-         target-revision: main
+         target-revision: ref/remotes/origin/main
 
