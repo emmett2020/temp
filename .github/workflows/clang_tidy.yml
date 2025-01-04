@@ -30,6 +30,7 @@ jobs:
     - name: Test
       run: |
         echo "git info: "
+        git fetch origin
         git branch -a
 
     - uses: emmett2020/cpp-linter@v0.0.64
