@@ -32,6 +32,7 @@ jobs:
         echo "git info: "
         git fetch origin
         git branch -a
+        git fetch origin main
 
         echo "local .git info: "
         ls -lrth .git
