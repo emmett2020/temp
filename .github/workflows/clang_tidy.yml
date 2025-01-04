@@ -33,6 +33,9 @@ jobs:
         git fetch origin
         git branch -a
 
+        echo "local .git info: "
+        ls -lrth .git
+
     - uses: emmett2020/cpp-linter@v0.0.64
       id: cpp-lint
       env:
