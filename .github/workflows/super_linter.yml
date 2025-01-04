@@ -43,4 +43,5 @@ jobs:
         env:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LOG_LEVEL: DEBUG
           # FIX_CLANG_FORMAT: true
