@@ -14,9 +14,8 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
-      with:
-        submodules: true
-        fetch-depth: 0
+      # with:
+        # fetch-depth: 0
 
     - name: CMake
       run: |
@@ -28,7 +27,7 @@ jobs:
           -DCMAKE_EXPORT_COMPILE_COMMANDS=on \
           -DCMAKE_BUILD_TYPE="Debug";
 
-    - uses: emmett2020/cpp-linter@v0.0.62
+    - uses: emmett2020/cpp-linter@v0.0.63
       id: cpp-lint
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
