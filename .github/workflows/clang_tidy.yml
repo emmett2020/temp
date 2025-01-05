@@ -38,6 +38,6 @@ jobs:
 
     - name: Echo
       run: |
-          echo ${{ cpp-lint.outputs.clang-format-checks-failed }}
-          echo ${{ cpp-lint.outputs.clang-tidy-checks-failed }}
+          echo "${{ cpp-lint.outputs.clang-format-checks-failed }}"
+          echo "${{ cpp-lint.outputs.clang-tidy-checks-failed }}"
 
