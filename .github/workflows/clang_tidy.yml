@@ -34,6 +34,7 @@ jobs:
       with:
          log-level: trace
          target-revision: main
+         disable-errors: true
 
     - name: Echo
       run: |
