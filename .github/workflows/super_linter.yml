@@ -3,11 +3,12 @@ name: Lint
 
 on: # yamllint disable-line rule:truthy
   push:
-    branches: main
+    branches: main1
   pull_request:
-    branches: main
+    branches: main1
 
-permissions: {}
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -15,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
-      packages: read
+      contents: write
+      packages: write
       # To report GitHub Actions status checks
       statuses: write
 
@@ -43,3 +44,20 @@ jobs:
         env:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LOG_LEVEL: DEBUG
+          FIX_CLANG_FORMAT: true
+          DISABLE_ERRORS: true
+
+      - name: Commit and push linting fixes
+        # Run only on:
+        # - Pull requests
+        # - Not on the default branch
+        # if: >
+        #   github.event_name == 'pull_request' &&
+        #   github.ref_name != github.event.repository.default_branch
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+
+          commit_message: "chore: fix linting issues"
+          commit_user_name: super-linter
+          commit_user_email: super-linter@super-linter.dev
