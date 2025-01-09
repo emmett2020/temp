@@ -26,6 +26,7 @@ jobs:
           -DCMAKE_BUILD_TYPE="Debug";
 
     - uses: emmett2020/cpp-lint-action@v1
+
       id: cpp-lint
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
