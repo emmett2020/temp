@@ -1,7 +1,7 @@
 name: Tag
 on:
   push:
-    branches: v*
+    tag: v*
 
 jobs:
   clang-tidy:
