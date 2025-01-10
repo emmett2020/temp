@@ -1,4 +1,4 @@
-name: Clang Tidy
+name: Tag
 on:
   push:
     branches: v*
