@@ -29,7 +29,7 @@ jobs:
           -DCMAKE_EXPORT_COMPILE_COMMANDS=on \
           -DCMAKE_BUILD_TYPE="Debug";
 
-    - uses: emmett2020/cpp-lint-action@v1
+    - uses: emmett2020/cpp-lint-action@v1.0.3
 
       id: cpp-lint
       env:
@@ -37,10 +37,6 @@ jobs:
       with:
          log-level: trace
          disable-errors: true
-
-
-
-
 
     - name: Echo
       run: |
