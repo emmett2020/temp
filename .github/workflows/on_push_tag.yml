@@ -1,0 +1,17 @@
+name: Tag
+on:
+  push:
+    tag: v*
+
+jobs:
+  clang-tidy:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Print source commit ID
+      run: |
+        echo "Source commit ID: ${{ github.event.pull_request.head.sha }}" 
+
+
