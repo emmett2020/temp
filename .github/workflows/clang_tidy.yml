@@ -1,10 +1,5 @@
-# Uses Github Action cpp-linter-action.
-# https://cpp-linter.github.io/cpp-linter-action/
-
 name: Clang Tidy
 on:
-  # push:
-  #   branches: ["main", "master"]
   pull_request:
     branches: ["main", "master"]
 
@@ -30,16 +25,8 @@ jobs:
           -DCMAKE_BUILD_TYPE="Debug";
 
     - uses: emmett2020/cpp-lint-action@v1
-
-      id: cpp-lint
+      id: cpp-lint-action
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-         log-level: trace
-         disable-errors: true
 
-    - name: Echo
-      run: |
-          echo "${{ steps.cpp-lint.outputs.clang-format-failed-number }}"
-          echo "${{ steps.cpp-lint.outputs.clang-tidy-failed-number }}"
 
